@@ -1,0 +1,150 @@
+{% extends "base.html" %}
+{% block title %}Raw Data{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/rawdata.css') }}">
+{% endblock %}
+
+{% block content %}
+{% include 'nav.html' %}
+
+<div class="container-fluid my-4">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+
+        <div class="d-flex align-items-center">
+            <!-- Ícono SVG -->
+            <img src="{{ url_for('static', filename='img/filetype-raw.svg') }}" alt="Raw Data" class="title-icon me-2">
+
+            <h3 class="mb-0">Raw Data - Acelerómetro</h3>
+        </div>
+
+        <!-- <div>
+            <a class="btn btn-outline-secondary btn-sm me-2" href="{{ url_for('dashboard') }}">← Dashboard</a>
+            <a class="btn btn-outline-secondary btn-sm" href="{{ url_for('home') }}">Inicio</a>
+        </div> -->
+
+    </div>
+
+
+    <div class="row">
+        <!-- Lista de capturas -->
+        <div class="col-md-3">
+            <div class="card shadow-sm">
+                <div class="card-header bg-primary text-white">
+                    <h5 class="mb-0">Capturas Disponibles</h5>
+                </div>
+                <div class="card-body" id="capturesList" style="max-height: 600px; overflow-y: auto;">
+                    <p class="text-muted">Cargando...</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Gráficas -->
+        <div class="col-md-9">
+            <div id="noDataMessage" class="alert alert-info">
+                <i class="bi bi-info-circle"></i> Selecciona una captura de la lista para ver las gráficas
+            </div>
+
+            <div id="chartsContainer" style="display: none;">
+                <!-- Info de la captura -->
+                <div class="card shadow-sm mb-3">
+                    <div class="card-body">
+                        <h5>Información de la Captura</h5>
+                        <div class="row text-center">
+                            <div class="col-md-3">
+                                <strong>Fecha</strong>
+                                <p id="captureDate" class="mb-0">-</p>
+                            </div>
+                            <div class="col-md-3">
+                                <strong>Duración</strong>
+                                <p id="captureDuration" class="mb-0">-</p>
+                            </div>
+                            <div class="col-md-3">
+                                <strong>Muestras</strong>
+                                <p id="captureSamples" class="mb-0">-</p>
+                            </div>
+                            <div class="col-md-3">
+                                <strong>Frecuencia</strong>
+                                <p id="captureSampleRate" class="mb-0">-</p>
+                            </div>
+                        </div>
+
+                        <!-- RPM + botones -->
+                        <div class="row text-center mt-2">
+                            <div class="col-md-4 mb-2 mb-md-0">
+                                <strong>RPM estimadas (eje X)</strong>
+                                <p id="captureRPM" class="mb-0">-</p>
+                            </div>
+                            <div class="col-md-4 d-flex justify-content-center align-items-center mb-2 mb-md-0">
+                                <button class="btn btn-sm btn-outline-primary" id="downloadCsvBtn">
+                                    Descargar CSV de esta captura
+                                </button>
+                            </div>
+                            <div class="col-md-4 d-flex justify-content-center align-items-center">
+                                <button class="raw-delete-btn" id="deleteCaptureBtn">
+                                    <svg viewBox="0 0 15 17.5" height="22" width="20" xmlns="http://www.w3.org/2000/svg"
+                                        class="icon">
+                                        <path transform="translate(-2.5 -1.25)"
+                                            d="M15,18.75H5A1.251,1.251,0,0,1,3.75,17.5V5H2.5V3.75h15V5H16.25V17.5A1.251,1.251,0,0,1,15,18.75ZM5,5V17.5H15V5Zm7.5,10H11.25V7.5H12.5V15ZM8.75,15H7.5V7.5H8.75V15ZM12.5,2.5h-5V1.25h5V2.5Z"
+                                            id="Fill">
+                                        </path>
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Gráfica combinada -->
+                <div class="card shadow-sm mb-3">
+                    <div class="card-body">
+                        <h5>Aceleración en 3 Ejes (X, Y, Z)</h5>
+                        <canvas id="combinedChart" height="100"></canvas>
+                    </div>
+                </div>
+
+                <!-- Gráficas individuales -->
+                <div class="row mb-3">
+                    <div class="col-md-4">
+                        <div class="card shadow-sm">
+                            <div class="card-body">
+                                <h6>Eje X</h6>
+                                <canvas id="xChart" height="150"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card shadow-sm">
+                            <div class="card-body">
+                                <h6>Eje Y</h6>
+                                <canvas id="yChart" height="150"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card shadow-sm">
+                            <div class="card-body">
+                                <h6>Eje Z</h6>
+                                <canvas id="zChart" height="150"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Magnitud total -->
+                <div class="card shadow-sm mb-3">
+                    <div class="card-body">
+                        <h5>Magnitud Total de Aceleración</h5>
+                        <canvas id="magnitudeChart" height="100"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<!-- Lógica específica de esta página -->
+<script type="module" src="{{ url_for('static', filename='js/rawdata.js') }}"></script>
+{% endblock %}

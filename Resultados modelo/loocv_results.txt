@@ -1,0 +1,25 @@
+RESULTADOS DE LEAVE-ONE-OUT CROSS-VALIDATION
+============================================================
+
+Total de muestras: 7
+Accuracy: 0.571 (57.1%)
+Correctas: 4/7
+
+Matriz de Confusión:
+        fog  normal  tremor
+fog       0       0       1
+normal    0       4       0
+tremor    1       1       0
+
+Top 10 Features:
+        feature  importance
+step_regularity    0.063472
+locomotor_power    0.049009
+        rms_mag    0.043575
+   freeze_index    0.040627
+       energy_x    0.040132
+          rms_x    0.032560
+        q50_mag    0.032540
+          var_x    0.032502
+        zcr_mag    0.031528
+     energy_mag    0.030612

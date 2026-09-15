@@ -1,0 +1,558 @@
+/* Iconos de redes sociales */
+.social-icon-facebook,
+.social-icon-instagram,
+.social-icon-twitter,
+.social-icon-linkedin,
+.social-icon-github {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    color: white;
+    font-size: 22px;
+    background-clip: padding-box;
+    overflow: hidden;
+
+    text-decoration: none;
+}
+
+
+/* Colores por red */
+
+.social-icon-facebook {
+    background-color: #3b5998;
+}
+
+.social-icon-facebook:hover {
+    background-color: #2d4373;
+}
+
+.social-icon-instagram {
+    background-color: #e1306c;
+}
+
+.social-icon-instagram:hover {
+    background-color: #c0255d;
+}
+
+/* 🔥 Corrección del error: antes decía "tiwtter" */
+.social-icon-twitter {
+    background-color: #1da1f2;
+}
+
+.social-icon-twitter:hover {
+    background-color: #0d95e8;
+}
+
+.social-icon-linkedin {
+    background-color: #0077b5;
+}
+
+.social-icon-linkedin:hover {
+    background-color: #005e93;
+}
+
+.social-icon-github {
+    background-color: #333;
+}
+
+.social-icon-github:hover {
+    background-color: #262626;
+}
+
+/* Estilos de hero */
+.hero-title {
+    font-size: clamp(2rem, 4vw, 3.5rem);
+    /* 2rem en móvil → 3.5rem en pantallas grandes */
+    line-height: 1.15;
+    font-weight: 700;
+}
+
+.hero-subtitle {
+    font-size: clamp(1rem, 2vw, 1.5rem);
+    line-height: 1.4;
+}
+
+
+
+/* Estilos globales */
+
+.card,
+.bg-white {
+    border-radius: 12px;
+}
+
+.progress {
+    background-color: #007bff;
+}
+
+.progress-bar {
+    transition: width .6s ease;
+}
+
+.navbar-logo {
+    width: 32px;
+    height: 32px;
+    display: inline-block;
+}
+
+.kpi-icon {
+    width: 52px;
+    height: 52px;
+    object-fit: contain;
+}
+
+/*  Animación de "campana" para alertas */
+.kpi-icon-alert {
+    display: inline-block;
+    transform-origin: 50% 0%;
+    /* gira desde la parte superior */
+    animation: bell-ring 1.2s ease-in-out infinite;
+}
+
+@keyframes bell-ring {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    10% {
+        transform: rotate(12deg);
+    }
+
+    20% {
+        transform: rotate(-10deg);
+    }
+
+    30% {
+        transform: rotate(8deg);
+    }
+
+    40% {
+        transform: rotate(-6deg);
+    }
+
+    50% {
+        transform: rotate(4deg);
+    }
+
+    60% {
+        transform: rotate(-2deg);
+    }
+
+    70% {
+        transform: rotate(1deg);
+    }
+
+    100% {
+        transform: rotate(0deg);
+    }
+}
+
+/* Footer */
+/* Redes sociales animadas (UIVERSE) */
+/* Redes sociales animadas (solo listas del footer) */
+ul.example-2 {
+    list-style: none;
+    padding-left: 0;
+    margin: 0;
+}
+
+.example-2 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    /* permite que salten de línea en pantallas pequeñas */
+    gap: 12px;
+}
+
+.example-2 .icon-content {
+    position: relative;
+}
+
+/* Tooltip */
+.example-2 .icon-content .tooltip {
+    position: absolute;
+    top: -30px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: #fff;
+    padding: 6px 10px;
+    border-radius: 5px;
+    opacity: 0;
+    visibility: hidden;
+    font-size: 14px;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+}
+
+.example-2 .icon-content:hover .tooltip {
+    opacity: 1;
+    visibility: visible;
+    top: -50px;
+}
+
+/* Botón circular */
+.example-2 .icon-content a {
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    color: #4d4d4d;
+    background-color: #fff;
+    transition: all 0.3s ease-in-out;
+}
+
+.example-2 .icon-content a:hover {
+    box-shadow: 3px 2px 45px 0px rgb(0 0 0 / 12%);
+    color: white;
+}
+
+.example-2 .icon-content a svg {
+    position: relative;
+    z-index: 1;
+    width: 30px;
+    height: 30px;
+}
+
+/* Relleno animado */
+.example-2 .icon-content a .filled {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 0;
+    transition: all 0.3s ease-in-out;
+}
+
+.example-2 .icon-content a:hover .filled {
+    height: 100%;
+}
+
+/* Colores por red */
+.example-2 .icon-content a[data-social="linkedin"] .filled,
+.example-2 .icon-content a[data-social="linkedin"]~.tooltip {
+    background-color: #0274b3;
+}
+
+.example-2 .icon-content a[data-social="github"] .filled,
+.example-2 .icon-content a[data-social="github"]~.tooltip {
+    background-color: #24262a;
+}
+
+.example-2 .icon-content a[data-social="instagram"] .filled,
+.example-2 .icon-content a[data-social="instagram"]~.tooltip {
+    background: linear-gradient(45deg,
+            #405de6,
+            #5b51db,
+            #b33ab4,
+            #c135b4,
+            #e1306c,
+            #fd1f1f);
+}
+
+.example-2 .icon-content a[data-social="facebook"] .filled,
+.example-2 .icon-content a[data-social="facebook"]~.tooltip {
+    background-color: #1877f2;
+}
+
+/*  Responsive para móviles pequeños */
+@media (max-width: 576px) {
+    .example-2 {
+        justify-content: center;
+        gap: 10px;
+    }
+
+    .example-2 .icon-content a {
+        width: 42px;
+        height: 42px;
+    }
+
+    .example-2 .icon-content a svg {
+        width: 24px;
+        height: 24px;
+    }
+}
+
+/* Animacion de Titulo principal */
+/* ------------------------- */
+/* Animación titulo (bajada) */
+/* ------------------------- */
+
+.fade-in-down {
+    opacity: 0;
+    transform: translateY(-20px);
+    animation: fadeDown 1s ease-out forwards;
+}
+
+@keyframes fadeDown {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ------------------------- */
+/* Animación subtítulo       */
+/* ------------------------- */
+
+.fade-in {
+    opacity: 0;
+    animation: fadeIn 1.3s ease-out forwards;
+    animation-delay: 0.3s;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+.fade-in-down {
+    animation: fadeDown 1s ease-out forwards, pulse 3s ease-in-out infinite 2s;
+}
+
+@keyframes pulse {
+
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.015);
+    }
+}
+
+/* Estilos de botones de navbar */
+/* -------------------------- */
+/* Botón Bubbles Navbar */
+/* -------------------------- */
+
+.nav-btn {
+    --c1: transparent;
+    /* Fondo del navbar */
+    --c2: #0d6efd;
+    /* Color azul como el diseño */
+    --size-letter: 16px;
+    /* Más pequeño para el navbar */
+    padding: 0.3em 0.8em;
+    font-size: var(--size-letter);
+    background-color: transparent;
+    border: 2px solid var(--c2);
+    border-radius: 0.4em;
+    cursor: pointer;
+
+    overflow: hidden;
+    position: relative;
+    transition: 300ms cubic-bezier(0.83, 0, 0.17, 1);
+}
+
+.nav-btn>.text {
+    font-weight: 600;
+    color: var(--c2);
+    position: relative;
+    z-index: 1;
+    transition: color 700ms cubic-bezier(0.83, 0, 0.17, 1);
+}
+
+.nav-btn::before {
+    top: 0;
+    left: 0;
+}
+
+.nav-btn::after {
+    top: 100%;
+    left: 100%;
+}
+
+.nav-btn::before,
+.nav-btn::after {
+    content: "";
+    width: 200%;
+    aspect-ratio: 1/1;
+    scale: 0;
+    transition: 900ms cubic-bezier(0.76, 0, 0.24, 1);
+    background-color: var(--c2);
+    border-radius: 50%;
+    position: absolute;
+    translate: -50% -50%;
+}
+
+.nav-btn:hover>.text {
+    color: white;
+}
+
+.nav-btn:hover::before,
+.nav-btn:hover::after {
+    scale: 1;
+}
+
+.nav-btn:active {
+    scale: 0.97;
+    filter: brightness(0.9);
+}
+
+/* === CTA Button (underline + moving arrow) === */
+.cta {
+    border: none;
+    background: none;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    padding: 6px 0;
+}
+
+.cta span {
+    padding-bottom: 7px;
+    letter-spacing: 3px;
+    font-size: 15px;
+    padding-right: 15px;
+    text-transform: uppercase;
+    font-weight: 600;
+    color: #0d6efd;
+    /* azul consistente con tu branding */
+}
+
+.cta svg {
+    transform: translateX(-8px);
+    transition: all 0.3s ease;
+    stroke: #0d6efd;
+    fill: #0d6efd;
+}
+
+.cta:hover svg {
+    transform: translateX(0);
+}
+
+.cta:active svg {
+    transform: scale(0.9);
+}
+
+.hover-underline-animation {
+    position: relative;
+    padding-bottom: 5px;
+}
+
+.hover-underline-animation:after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    transform: scaleX(0);
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: #0d6efd;
+    transform-origin: bottom right;
+    transition: transform 0.25s ease-out;
+}
+
+.cta:hover .hover-underline-animation:after {
+    transform: scaleX(1);
+    transform-origin: bottom left;
+}
+
+/* ===== KPI CARDS (Glassmorphism + Blob Bounce) ===== */
+
+.kpi-card {
+    position: relative;
+    width: 100%;
+    height: 230px;
+    border-radius: 16px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 15px 15px 40px #bebebe, -15px -15px 40px #ffffff;
+    margin-bottom: 20px;
+}
+
+.kpi-bg {
+    position: absolute;
+    top: 6px;
+    left: 6px;
+    right: 6px;
+    bottom: 6px;
+    background: rgba(255, 255, 255, .92);
+    backdrop-filter: blur(25px);
+    border-radius: 12px;
+    outline: 2px solid white;
+    z-index: 2;
+}
+
+.kpi-content {
+    z-index: 3;
+    position: relative;
+    text-align: center;
+    padding: 20px;
+}
+
+.kpi-icon-lg {
+    width: 55px;
+    height: 55px;
+    margin-bottom: 10px;
+}
+
+.kpi-title {
+    font-size: 14px;
+    color: #777;
+    margin: 0;
+}
+
+.kpi-value {
+    font-size: 32px;
+    font-weight: bold;
+    margin: 0;
+}
+
+/* Animated blob */
+.kpi-blob {
+    position: absolute;
+    z-index: 1;
+    top: 50%;
+    left: 50%;
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    opacity: 1;
+    filter: blur(12px);
+    animation: blob-bounce 6s infinite ease;
+}
+
+/* Animation */
+@keyframes blob-bounce {
+    0% {
+        transform: translate(-100%, -100%);
+    }
+
+    25% {
+        transform: translate(0%, -100%);
+    }
+
+    50% {
+        transform: translate(0%, 0%);
+    }
+
+    75% {
+        transform: translate(-100%, 0%);
+    }
+
+    100% {
+        transform: translate(-100%, -100%);
+    }
+}

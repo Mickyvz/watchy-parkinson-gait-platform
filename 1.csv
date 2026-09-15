@@ -1,0 +1,63 @@
+Variable,Formula,Description,Clinical Relevance
+mean_x,mean(x),Mean of X-axis acceleration,Reflects average medio-lateral body displacement during walking
+mean_y,mean(y),Mean of Y-axis acceleration,Reflects average vertical body displacement during walking
+mean_z,mean(z),Mean of Z-axis acceleration,Reflects average antero-posterior body displacement during walking
+mean_mag,mean(sqrt(x²+y²+z²)),Mean of acceleration magnitude,Overall average movement intensity across all axes
+std_x,std(x),Standard deviation of X-axis,Variability of medio-lateral acceleration; increases with irregular gait
+std_y,std(y),Standard deviation of Y-axis,Variability of vertical acceleration; sensitive to stride irregularity
+std_z,std(z),Standard deviation of Z-axis,Variability of antero-posterior acceleration
+std_mag,std(sqrt(x²+y²+z²)),Standard deviation of magnitude,Overall signal variability; higher in fast or irregular walking
+var_x,var(x),Variance of X-axis acceleration,Squared dispersion of medio-lateral motion
+var_y,var(y),Variance of Y-axis acceleration,Squared dispersion of vertical motion; sensitive to step amplitude changes
+var_z,var(z),Variance of Z-axis acceleration,Squared dispersion of antero-posterior motion
+var_mag,var(sqrt(x²+y²+z²)),Variance of acceleration magnitude,Overall motion variability; top-ranked feature for gait discrimination
+range_x,max(x) - min(x),Range of X-axis,Peak-to-peak amplitude of medio-lateral oscillation
+range_y,max(y) - min(y),Range of Y-axis,Peak-to-peak amplitude of vertical oscillation per window
+range_z,max(z) - min(z),Range of Z-axis,Peak-to-peak amplitude of antero-posterior oscillation
+range_mag,max(mag) - min(mag),Range of magnitude,Total amplitude excursion of resultant acceleration
+max_x,max(x),Maximum X-axis value,Peak medio-lateral acceleration
+max_y,max(y),Maximum Y-axis value,Peak vertical acceleration
+max_z,max(z),Maximum Z-axis value,Peak antero-posterior acceleration
+max_mag,max(sqrt(x²+y²+z²)),Maximum magnitude,Peak overall acceleration intensity
+min_x,min(x),Minimum X-axis value,Trough of medio-lateral acceleration
+min_y,min(y),Minimum Y-axis value,Trough of vertical acceleration
+min_z,min(z),Minimum Z-axis value,Trough of antero-posterior acceleration
+min_mag,min(sqrt(x²+y²+z²)),Minimum magnitude,Trough of overall acceleration intensity
+q25_mag,percentile(mag; 25),25th percentile of magnitude,Lower quartile of motion intensity distribution
+q50_mag,percentile(mag; 50),Median of magnitude,Central tendency of motion intensity; robust to outliers
+q75_mag,percentile(mag; 75),75th percentile of magnitude,Upper quartile of motion intensity distribution
+cv_mag,std(mag) / (mean(mag) + eps),Coefficient of variation of magnitude,Normalized variability; allows comparison across subjects with different motion intensities
+rms_x,sqrt(mean(x²)),RMS of X-axis,Effective amplitude of medio-lateral acceleration
+rms_y,sqrt(mean(y²)),RMS of Y-axis,Effective amplitude of vertical acceleration
+rms_z,sqrt(mean(z²)),RMS of Z-axis,Effective amplitude of antero-posterior acceleration
+rms_mag,sqrt(mean(mag²)),RMS of magnitude,Effective overall signal amplitude; related to metabolic cost of walking
+mean_jerk,mean(||Δa/Δt||),Mean magnitude of jerk (rate of change of acceleration),Quantifies movement smoothness; higher values indicate abrupt or irregular motion patterns
+std_jerk,std(||Δa/Δt||),Standard deviation of jerk magnitude,Variability of movement smoothness across the window
+max_jerk,max(||Δa/Δt||),Maximum jerk magnitude,Peak abruptness of acceleration change; sensitive to sudden movement transitions
+min_jerk,min(||Δa/Δt||),Minimum jerk magnitude,Minimum rate of acceleration change within the window
+sma,(sum(|x|)+sum(|y|)+sum(|z|)) / N,Signal Magnitude Area,Total activity level; used in activity recognition to distinguish active from sedentary states
+zcr_x,sum(sign(x[i]) ≠ sign(x[i-1])),Zero-crossing rate of X-axis,Frequency of direction changes in medio-lateral motion
+zcr_y,sum(sign(y[i]) ≠ sign(y[i-1])),Zero-crossing rate of Y-axis,Frequency of direction changes in vertical motion; correlates with step cadence
+zcr_z,sum(sign(z[i]) ≠ sign(z[i-1])),Zero-crossing rate of Z-axis,Frequency of direction changes in antero-posterior motion
+zcr_mag,sum(sign(mag[i]-mean(mag)) ≠ sign(mag[i-1]-mean(mag))),Zero-crossing rate of centered magnitude,Oscillation frequency of resultant acceleration around its mean
+energy_x,sum(x²),Signal energy of X-axis,Total energy of medio-lateral acceleration signal
+energy_y,sum(y²),Signal energy of Y-axis,Total energy of vertical acceleration signal
+energy_z,sum(z²),Signal energy of Z-axis,Total energy of antero-posterior acceleration signal
+energy_mag,sum(mag²),Signal energy of magnitude,Total kinetic energy proxy of the combined motion signal
+dominant_power,FFT(mag)[argmax(FFT(mag))],Power at the dominant frequency,Amplitude of the strongest periodic component in the gait cycle
+spectral_energy,sum(FFT(mag)²),Total spectral energy,Overall energy distributed across all frequency components
+power_tremor_band,sum(FFT(mag)² for f in [4-6 Hz]),Power in tremor frequency band (4-6 Hz),Captures energy in the Parkinsonian rest tremor range; clinically relevant for tremor detection
+power_low_freq,sum(FFT(mag)² for f in [0.5-3 Hz]),Power in low-frequency band (0.5-3 Hz),Associated with the locomotor rhythm; dominant in normal and slow walking
+power_mid_freq,sum(FFT(mag)² for f in [3-8 Hz]),Power in mid-frequency band (3-8 Hz),Overlaps with FoG detection band; second most important feature for gait classification
+power_high_freq,sum(FFT(mag)² for f in [8-15 Hz]),Power in high-frequency band (8-15 Hz),Associated with high-intensity or impact-related components
+spectral_entropy,#�NOMBRE?,Spectral entropy,Measures disorder of frequency distribution; lower in rhythmic gait; higher in irregular or pathological walking
+spectral_centroid,sum(f * FFT(mag)) / sum(FFT(mag)),Spectral centroid,Weighted mean frequency; shifts toward higher values with increasing gait speed
+spectral_spread,sqrt(sum((f-centroid)² * FFT) / sum(FFT)),Spectral spread,Dispersion of energy around the centroid frequency; reflects regularity of dominant gait rhythm
+freeze_index,power_freeze_band / (power_locomotor_band + eps),Freeze Index,Ratio of freeze-band to locomotor-band power; key indicator used in Freezing of Gait detection algorithms [9]
+locomotor_power,sum(FFT(mag)² for f in [0.5-3 Hz]),Locomotor band power (0.5-3 Hz),Energy of rhythmic walking pattern; decreases during FoG episodes
+freeze_power,sum(FFT(mag)² for f in [3-8 Hz]),Freeze band power (3-8 Hz),Energy in the FoG-associated band; increases relative to locomotor power during freezing episodes
+cadence_spm,len(peaks) * 60 / window_duration,Cadence in steps per minute,Estimated step rate from bandpass-filtered signal peaks; reduced in bradykinesia
+step_regularity,std(inter-peak intervals),Standard deviation of inter-step intervals,Temporal irregularity of the step rhythm; elevated in Parkinsonian gait
+freeze_ratio,freeze_power / (freeze_power + locomotor_power + eps),Freeze ratio,Normalized freeze band contribution; bounded [0-1]; facilitates cross-subject comparison
+steps_10s,Hardware BMA423 embedded DSP step counter,Number of steps detected by the accelerometer hardware within the 10-second window,Direct cadence descriptor; complements software-estimated cadence
+numSamples,len(samples),Total number of accelerometer samples in the window,Reflects effective sampling rate; used for data quality control

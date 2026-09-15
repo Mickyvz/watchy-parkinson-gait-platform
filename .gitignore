@@ -1,0 +1,48 @@
+# ===== Python =====
+venv/
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+
+# ===== Secrets / credentials =====
+.env
+serviceAccountKey.json
+watchy-*-firebase-adminsdk-*.json
+
+# ===== Runtime data (regenerated at use) =====
+uploads/
+new_walks/
+
+# ===== Flutter / Dart (artefactos sueltos en la raíz; el proyecto real vive en watchy_sync/) =====
+/.dart_tool/
+/.flutter-plugins-dependencies
+/pubspec.yaml
+/pubspec.lock
+
+# ===== Flutter / Dart (watchy_sync) =====
+watchy_sync/build/
+watchy_sync/.dart_tool/
+watchy_sync/.flutter-plugins-dependencies
+watchy_sync/.pub-cache/
+watchy_sync/.pub/
+watchy_sync/android/.gradle/
+watchy_sync/android/app/debug/
+watchy_sync/android/app/profile/
+watchy_sync/android/app/release/
+watchy_sync/**/*.iml
+watchy_sync/**/.idea/
+watchy_sync/android/app/google-services.json
+watchy_sync/ios/Runner/GoogleService-Info.plist
+
+# ===== Editors / tooling =====
+.claude/
+.vscode/
+.idea/
+
+# ===== Documentos privados (no forman parte del proyecto técnico) =====
+Checklist.docx
+Response_to_Reviewers.txt
+
+# ===== OS =====
+.DS_Store
+Thumbs.db

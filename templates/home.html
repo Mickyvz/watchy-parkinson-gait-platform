@@ -1,0 +1,120 @@
+<!-- templates/home.html -->
+
+<div class="container my-5">
+    <!-- Encabezado principal -->
+    <div class="text-center mb-5">
+        <h1 class="fw-bold text-primary mb-2 fade-in-down hero-title">
+            Plataforma Clínica de Parkinson
+        </h1>
+
+        <p class="lead text-muted fade-in hero-subtitle">
+            Sistema de monitoreo y análisis clínico para el seguimiento de pacientes con enfermedad de Parkinson.
+        </p>
+    </div>
+
+
+    <div class="row g-4">
+
+        <!-- Pacientes activos -->
+        <div class="col-md-3">
+            <div class="kpi-card">
+                <div class="kpi-bg"></div>
+                <div class="kpi-blob" style="background-color:#4e79ff;"></div>
+
+                <div class="kpi-content">
+                    <img src="{{ url_for('static', filename='img/patient-list.svg') }}" class="kpi-icon-lg"
+                        alt="Pacientes activos">
+                    <p class="kpi-title">Pacientes activos</p>
+                    <p class="kpi-value">42</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Dispositivos conectados -->
+        <div class="col-md-3">
+            <div class="kpi-card">
+                <div class="kpi-bg"></div>
+                <div class="kpi-blob" style="background-color:#42d392;"></div>
+
+                <div class="kpi-content">
+                    <img src="{{ url_for('static', filename='img/watch-2-remix.svg') }}" class="kpi-icon-lg"
+                        alt="Dispositivos conectados">
+                    <p class="kpi-title">Dispositivos conectados</p>
+                    <p class="kpi-value">12</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Alertas hoy -->
+        <div class="col-md-3">
+            <div class="kpi-card">
+                <div class="kpi-bg"></div>
+                <div class="kpi-blob" style="background-color:#ff3b3b;"></div>
+
+                <div class="kpi-content">
+                    <img src="{{ url_for('static', filename='img/add-alert-outline.svg') }}" class="kpi-icon-lg"
+                        alt="Alertas hoy">
+                    <p class="kpi-title">Alertas hoy</p>
+                    <p class="kpi-value">3</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Médicos registrados -->
+        <div class="col-md-3">
+            <div class="kpi-card">
+                <div class="kpi-bg"></div>
+                <div class="kpi-blob" style="background-color:#9b59b6;"></div>
+
+                <div class="kpi-content">
+                    <img src="{{ url_for('static', filename='img/health-worker-light.svg') }}" class="kpi-icon-lg"
+                        alt="Médicos registrados">
+                    <p class="kpi-title">Médicos registrados</p>
+                    <p class="kpi-value">7</p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+
+    <div class="row mt-5 align-items-center">
+        <div class="col-lg-6">
+            <h3 class="fw-bold mb-3 text-primary">Monitoreo en tiempo real</h3>
+            <p class="text-muted mb-4">
+                La plataforma permite visualizar lecturas obtenidas desde dispositivos portátiles (IoT)
+                que registran parámetros relacionados con temblores, bradicinesia y actividad motora diaria.
+                Los datos son procesados mediante modelos de análisis y mostrados en tiempo real a los médicos
+                tratantes.
+            </p>
+            <a href="{{ url_for('dashboard') }}" style="text-decoration: none;">
+                <button class="cta">
+                    <span class="hover-underline-animation">Ver Dashboard Clínico</span>
+                    <svg id="arrow-horizontal" xmlns="http://www.w3.org/2000/svg" width="30" height="10"
+                        viewBox="0 0 46 16">
+                        <path d="M8,0,6.545,1.455l5.506,5.506H-30V9.039H12.052L6.545,14.545,8,16l8-8Z"
+                            transform="translate(30)"></path>
+                    </svg>
+                </button>
+            </a>
+        </div>
+        <div class="col-lg-6 text-center">
+            <img src="{{ url_for('static', filename='img/foto parkinson.jpg') }}" alt="Monitoreo Clínico"
+                class="img-fluid" style="max-height: 320px;">
+        </div>
+    </div>
+
+    <div class="row mt-5">
+        <div class="col-12">
+            <div class="card border-0 bg-light shadow-sm p-4">
+                <h5 class="fw-bold mb-2 text-primary">Objetivo</h5>
+                <p class="mb-0 text-muted">
+                    Facilitar la detección temprana de alteraciones motoras en pacientes con Parkinson,
+                    ofreciendo una herramienta que centralice la información clínica, fomente el análisis
+                    de datos históricos y mejore la toma de decisiones médicas.
+                </p>
+            </div>
+        </div>
+    </div>
+</div>

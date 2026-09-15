@@ -1,0 +1,77 @@
+{% extends "base.html" %}
+
+{% block title %}Dashboard Clínico{% endblock %}
+
+{% block content %}
+
+{% include 'nav.html' %}
+
+<div class="container my-4">
+
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h3 class="mb-0">Dashboard clínico</h3>
+
+        <div class="d-flex gap-2">
+            <!-- 🔹 NUEVO BOTÓN -->
+            <a href="{{ url_for('classify_walk') }}" style="text-decoration: none;">
+                <button class="learn-more">
+                    <span class="circle" aria-hidden="true">
+                        <span class="icon arrow"></span>
+                    </span>
+                    <span class="button-text">Clasificar caminata</span>
+                </button>
+            </a>
+
+            <!-- 🔹 BOTÓN EXISTENTE -->
+            <a href="{{ url_for('rawdata') }}" style="text-decoration: none;">
+                <button class="learn-more">
+                    <span class="circle" aria-hidden="true">
+                        <span class="icon arrow"></span>
+                    </span>
+                    <span class="button-text">Ver Raw Data</span>
+                </button>
+            </a>
+        </div>
+    </div>
+
+
+    <div class="row g-3 align-items-stretch mb-3">
+        <div class="col-md-6">
+            <div class="card-tile p-3 text-center shadow-sm">
+                <div class="small text-muted">PASOS HOY</div>
+                <div id="totalStepsToday" class="display-5 fw-bold text-success">--</div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="card-tile p-3 text-center shadow-sm">
+                <div class="small text-muted">CALORÍAS</div>
+                <div id="batteryMv" class="display-5 fw-bold text-warning">--</div>
+            </div>
+        </div>
+
+        <!-- 🔹 ESTA TARJETA SE USARÁ PARA "PASOS EN 10s POR CAPTURA" -->
+        <div class="col-12">
+            <div class="card p-4 shadow-sm" style="height: 350px;">
+                <h6 class="mb-3">Pasos por captura (ventana de 10 segundos)</h6>
+                <canvas id="signalChart"></canvas>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/dashboard.css') }}">
+{% endblock %}
+
+{% block extra_js %}
+{# 🔹 Exportamos los datos de capturas desde Flask a JS #}
+<script>
+    window.CAPTURE_STEPS = {{ capture_steps | tojson }};
+</script>
+
+<script src="{{ url_for('static', filename='js/dashboard.js') }}" type="module"></script>
+{% endblock %}

@@ -1,0 +1,25 @@
+================================================================================
+RANDOM FOREST (FROM SCRATCH) - STRATIFIED K-FOLD CV
+================================================================================
+Fecha: 2026-01-21 14:58:03
+
+Accuracy por fold:
+[np.float64(0.6667), np.float64(0.6667), np.float64(0.7083), np.float64(0.625), np.float64(0.5417)]
+
+Accuracy promedio: 0.6417 (+/- 0.0565)
+Macro-F1: 0.6454
+
+
+Matriz de confusión (rows=true, cols=pred):
+             gait_fast  gait_normal  gait_slow
+gait_fast           30           10          0
+gait_normal          8           23          9
+gait_slow            2           14         24
+
+
+Métricas por clase:
+      Clase  Precision   Recall       F1  Specificity  Balanced Accuracy
+  gait_fast   0.750000 0.750000 0.750000     0.875000            0.81250
+gait_normal   0.489362 0.575000 0.528736     0.700000            0.63750
+  gait_slow   0.727273 0.600000 0.657534     0.887500            0.74375
+  MACRO AVG   0.655545 0.641667 0.645423     0.820833            0.73125
