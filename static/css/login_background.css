@@ -1,3 +1,8 @@
+/* En la pantalla de login no mostramos el footer del sitio: la tarjeta ocupa toda la vista */
+footer {
+    display: none;
+}
+
 /* Fondo animado con paleta azul-clínica */
 body {
     margin: 0;

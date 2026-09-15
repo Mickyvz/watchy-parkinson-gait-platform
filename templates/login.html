@@ -25,6 +25,12 @@
     <form class="form" action="{{ url_for('login') }}" method="POST">
         <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
 
+        <div class="login-header">
+            <img src="{{ url_for('static', filename='img/app-monitoring.svg') }}" alt="" class="login-logo">
+            <h1>Bienvenido de nuevo</h1>
+            <p>Inicia sesión para ver tu dashboard de marcha</p>
+        </div>
+
         {% with messages = get_flashed_messages(with_categories=true) %}
         {% if messages %}
         <div class="mb-3">
@@ -80,19 +86,50 @@
 
         <p class="p line">Or With</p>
 
-        <div class="flex-row">
-            <button class="btn google" type="button">
-                <img src="{{ url_for('static', filename='img/google.svg') }}" alt="Google" width="20" height="20">
-                <span>Google</span>
-            </button>
-
-            <button class="btn apple" type="button">
-                <img src="{{ url_for('static', filename='img/baseline-apple.svg') }}" alt="Apple" width="20"
-                    height="20">
-                <span>Apple</span>
-            </button>
-        </div>
+        <button class="btn google" type="button" id="btnGoogleLogin">
+            <img src="{{ url_for('static', filename='img/google.svg') }}" alt="" width="20" height="20">
+            <span>Continuar con Google</span>
+        </button>
 
     </form>
 </div>
+{% endblock %}
+
+{% block extra_js %}
+<script type="module">
+    import { GoogleAuthProvider, signInWithPopup } from "https://www.gstatic.com/firebasejs/12.4.0/firebase-auth.js";
+
+    const btnGoogle = document.getElementById("btnGoogleLogin");
+
+    btnGoogle.addEventListener("click", async () => {
+        btnGoogle.disabled = true;
+        try {
+            const provider = new GoogleAuthProvider();
+            const result = await signInWithPopup(window._auth, provider);
+            const idToken = await result.user.getIdToken();
+
+            const csrfToken = document.querySelector('input[name="csrf_token"]').value;
+            const resp = await fetch("{{ url_for('login_google') }}", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "X-CSRFToken": csrfToken
+                },
+                body: JSON.stringify({ idToken })
+            });
+
+            const data = await resp.json();
+            if (resp.ok && data.redirect) {
+                window.location.href = data.redirect;
+            } else {
+                alert(data.error || "No se pudo iniciar sesión con Google.");
+            }
+        } catch (err) {
+            console.error(err);
+            alert("No se pudo iniciar sesión con Google.");
+        } finally {
+            btnGoogle.disabled = false;
+        }
+    });
+</script>
 {% endblock %}

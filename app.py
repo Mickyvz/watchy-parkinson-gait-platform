@@ -12,7 +12,7 @@ from dotenv import load_dotenv
 
 # ===== Firebase Admin =====
 import firebase_admin
-from firebase_admin import credentials, db
+from firebase_admin import credentials, db, auth as firebase_auth
 
 # ===== Signal processing =====
 from scipy import signal
@@ -445,6 +445,29 @@ def login():
             flash("Email o contraseña incorrectos", "danger")
 
     return render_template("login.html")
+
+
+@app.route("/login/google", methods=["POST"])
+def login_google():
+    data = request.get_json(silent=True) or {}
+    id_token = data.get("idToken")
+    if not id_token:
+        return {"error": "Falta idToken."}, 400
+
+    try:
+        initialize_firebase_admin()
+        decoded = firebase_auth.verify_id_token(id_token)
+    except Exception as e:
+        print(f"[ERROR] Token de Google inválido: {e}")
+        return {"error": "Token de Google inválido."}, 401
+
+    email = decoded.get("email")
+    if not email:
+        return {"error": "No se pudo obtener el email de la cuenta de Google."}, 400
+
+    session["user_email"] = email
+    session["user_name"] = decoded.get("name", email)
+    return {"redirect": url_for("home")}
 
 
 @app.route("/logout")
