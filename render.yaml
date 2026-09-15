@@ -1,0 +1,30 @@
+services:
+  - type: web
+    name: watchy-parkinson-platform
+    runtime: python
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn app:app --bind 0.0.0.0:$PORT
+    envVars:
+      - key: FLASK_SECRET_KEY
+        sync: false
+      - key: FLASK_DEBUG
+        value: "0"
+      - key: FIREBASE_URL
+        sync: false
+      - key: FIREBASE_USER_ID
+        sync: false
+      - key: FIREBASE_DEVICE_ID
+        sync: false
+      - key: FIREBASE_SERVICE_ACCOUNT_PATH
+        value: /etc/secrets/serviceAccountKey.json
+      - key: FIREBASE_DEVICE_AUTH_EMAIL
+        sync: false
+      - key: FIREBASE_DEVICE_AUTH_PASSWORD
+        sync: false
+      - key: DEMO_USER_EMAIL
+        sync: false
+      - key: DEMO_USER_PASSWORD
+        sync: false
+      - key: DEMO_USER_NAME
+        sync: false

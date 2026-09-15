@@ -9,8 +9,9 @@ Este proyecto es el resultado del trabajo de tesis de maestría del autor y dio
 origen al artículo *"Wearable sensors for gait analysis"* (Revista Mexicana de
 Ingeniería Biomédica, aceptado 2026).
 
-> **Estado del proyecto:** funcional y probado, pero de uso local/experimental.
-> No está desplegado en ningún servidor público; se ejecuta en `localhost`.
+> **Estado del proyecto:** funcional y probado. El backend web puede
+> desplegarse en un servidor público (ver [Despliegue](#despliegue)) o
+> ejecutarse localmente para desarrollo.
 
 ## Arquitectura
 
@@ -110,6 +111,26 @@ Phyphox.
 
 Ver [`.env.example`](.env.example) para la lista completa. Ninguna credencial
 real vive en el código fuente: todo se carga vía `python-dotenv`.
+
+## Despliegue
+
+El backend está preparado para desplegarse en [Render](https://render.com)
+usando el Blueprint incluido ([`render.yaml`](render.yaml)):
+
+1. En Render: **New** → **Blueprint** → conecta este repositorio.
+2. Render detecta `render.yaml` y crea el servicio web automáticamente
+   (`pip install -r requirements.txt` + `gunicorn app:app`).
+3. En la sección **Environment** del servicio, completa las variables
+   marcadas como privadas (`FLASK_SECRET_KEY`, `FIREBASE_URL`,
+   `FIREBASE_USER_ID`, `FIREBASE_DEVICE_ID`, `FIREBASE_DEVICE_AUTH_EMAIL`,
+   `FIREBASE_DEVICE_AUTH_PASSWORD`, `DEMO_USER_*`) con tus propios valores.
+4. En **Secret Files**, sube tu `serviceAccountKey.json` con el path
+   `/etc/secrets/serviceAccountKey.json` (ya configurado en `render.yaml`).
+5. Cada `git push` a `main` despliega automáticamente la nueva versión.
+
+> El plan gratuito de Render suspende el servicio tras ~15 min de
+> inactividad; la primera petición tras eso tarda unos segundos en
+> responder mientras el servicio despierta.
 
 ## Autor
 
