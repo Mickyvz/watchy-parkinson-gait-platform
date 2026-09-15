@@ -9,9 +9,11 @@ Este proyecto es el resultado del trabajo de tesis de maestría del autor y dio
 origen al artículo *"Wearable sensors for gait analysis"* (Revista Mexicana de
 Ingeniería Biomédica, aceptado 2026).
 
-> **Estado del proyecto:** funcional y probado. El backend web puede
-> desplegarse en un servidor público (ver [Despliegue](#despliegue)) o
-> ejecutarse localmente para desarrollo.
+> **Estado del proyecto:** funcional y probado. El backend web está
+> desplegado en producción en
+> **[watchy-parkinson-platform.onrender.com](https://watchy-parkinson-platform.onrender.com)**
+> (ver [Despliegue](#despliegue)), y también puede ejecutarse localmente para
+> desarrollo.
 
 ## Arquitectura
 
@@ -39,7 +41,8 @@ El repositorio contiene tres componentes:
 
 ## Funcionalidades del backend web
 
-- **Login** con sesión de usuario (Flask-Login/session).
+- **Login** con sesión de usuario (email/contraseña o cuenta de Google vía
+  Firebase Auth).
 - **Dashboard** con el histórico de predicciones del usuario.
 - **Visualización de datos crudos** (`/rawdata`) capturados desde Firebase.
 - **Clasificación de caminatas** (`/classify_walk`, `/predict_walk`): sube un
@@ -114,8 +117,11 @@ real vive en el código fuente: todo se carga vía `python-dotenv`.
 
 ## Despliegue
 
-El backend está preparado para desplegarse en [Render](https://render.com)
-usando el Blueprint incluido ([`render.yaml`](render.yaml)):
+El backend está desplegado en [Render](https://render.com) usando el
+Blueprint incluido ([`render.yaml`](render.yaml)):
+**https://watchy-parkinson-platform.onrender.com**
+
+Para desplegar tu propia copia:
 
 1. En Render: **New** → **Blueprint** → conecta este repositorio.
 2. Render detecta `render.yaml` y crea el servicio web automáticamente
@@ -126,7 +132,11 @@ usando el Blueprint incluido ([`render.yaml`](render.yaml)):
    `FIREBASE_DEVICE_AUTH_PASSWORD`, `DEMO_USER_*`) con tus propios valores.
 4. En **Secret Files**, sube tu `serviceAccountKey.json` con el path
    `/etc/secrets/serviceAccountKey.json` (ya configurado en `render.yaml`).
-5. Cada `git push` a `main` despliega automáticamente la nueva versión.
+5. Para habilitar el login con Google, activa el proveedor **Google** en
+   Firebase Console → Authentication → Sign-in method, y agrega el dominio de
+   tu servicio (p. ej. `tu-app.onrender.com`) en Authentication → Settings →
+   Authorized domains.
+6. Cada `git push` a `main` despliega automáticamente la nueva versión.
 
 > El plan gratuito de Render suspende el servicio tras ~15 min de
 > inactividad; la primera petición tras eso tarda unos segundos en
