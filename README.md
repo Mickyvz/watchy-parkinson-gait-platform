@@ -145,4 +145,4 @@ Para desplegar tu propia copia:
 ## Autor
 
 Miguel Alcaraz Vázquez — proyecto desarrollado como parte de la tesis de
-maestría en Ciencias de la Computación.
+maestría en Ingeniería para la Innovación y Desarrollo Tecnológico.
